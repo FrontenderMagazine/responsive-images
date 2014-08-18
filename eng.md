@@ -1,65 +1,33 @@
-## Introduction {#introduction}
+## Вступление {#introduction}
 
-Finally, true responsive images are becoming a reality on the web — in pure
-HTML, without convoluted hacks. The`<picture>` element and a couple of
-new attributes for the`<img>` element are behind a flag in Chromium 37
-and shipping in Chromium 38 (so coming soon in Opera), in[Firefox Nightly][1]
-and are being[implemented in WebKit][2] (although it remains to be seen if
-Apple will ship it in the next version of Safari
-).
+Наконец-то по настоящему отзывчивые изображения стают реальностью веба -- в чистом HTML, без всяких замысловатых хаков. Элемент `<picture>` и парочка новых аттрибутов элемента `<img>` уже поддерживаются в Chromium 37 и идут в комплекте в Chromium 38 (скоро ожидается то же в Opera), в [Firefox Nightly][1]
+и имплементрируются в [implemented in WebKit][2] (нужно будет ещё посмотреть будет ли 
+Apple иметь их в своей следующей версии Safari).
 
-The new `<picture>` element can be verbose and confusing, because it
-solves a range of use cases. To help you match your requirements to the 
-responsive image syntax, we’ve prepared this article full of examples.
+Новый элемент `<picture>` может быть длинным и запутанным потому что он решает множество случаев использования. Для того, чтобы помочь удовлетворить ваши нужды в синтаксисе отзывчивых изображений, мы подготовили эту полную примеров статью.
 
-## Four questions {#four-questions}
+## Четыре вопроса {#four-questions}
 
-Before you start using responsive images in your design, you always have to
-answer the following four questions:
+Прежде чем вы начали использовать отзывчивые изображения в вашей разработке, вам нужно ответить на следующие четыре вопроса:
 
-*   Do I want my image **sizes** to change depending on my responsive design
-    rules?
-   
-*   Do I want to optimize for high-**dpi** screens?
-*   Do I want to serve images with different **mime** types to browsers that
-    support them?
-   
-*   Do I want to serve different **art** depending on certain contextual
-    factors?
+* Хочу ли я чтобы **размеры** моих изображений изменялись в зависимости от правил моего отзывчивого дизайна?   
+* Хочу ли я оптимизироваться под экраны с высоким **dpi**?
+* Хочу ли я отдавать изображения з различными **mime** типами для поддерживающих их браузеров?   
+* Хочу ли я отдавать различное **содержимое** в зависимости от определённых контекстовых факторов?
    
 
-In the examples below, we’re referring to these questions with the keywords **
-sizes**, **dpi**, **mime** and **art**, respectively, and then for each
-combination of answers, we show a snippet of example code with a short 
-explanation. When creating these examples, I had
-[this night shot of the Oslo Opera house][3] in my head — it might be useful
-for your reference.<figure class="figure">
+В приведенных ниже примерах мы от the examples below, мы осветим эти вопросы используя ключевые слова **размер**, **dpi**, **mime** and **содержимое** соответственно и далее для каждой комбинации ответов мы покажем кусок примерного кода с коротким описанием. При создании этих примеров, я держал в голове
+[этот ночной снимок оперного зала Осло][3] —- он может оказаться полезным для вас.<figure class="figure">
 
-![The Opera House in Oslo at night][4]<figcaption class="figure__caption">The
-Opera House in Oslo at night</figcaption></figure>
-## Things to keep in mind {#things-to-keep-in-mind}
+![Ночной снимок оперного зала Осло][4]<figcaption class="figure__caption">Ночной снимок оперного зала Осло</figcaption></figure>
+## Вещи, которые нужно запомнить {#things-to-keep-in-mind}
 
-Before you start looking at the different examples though, here are a couple of
-things to keep in mind:
+Перед тем, как вы взглянете на различные примеры ниже, нужно запомнить несколько следующих вещей:
 
-*   `<picture>` *requires* `<img>` as its last child. Without that
-    , nothing is displayed. This is good for accessibility as there is just one 
-    traditional place for your alternate text, and it’s great for fallback content 
-    in old browsers, which just show the
-   `<img>` element.
-*   Think of `<picture>`, `sizes` and `srcset` attributes as overriding
-    the
-   `src` of the `<img>`. Check `currentSrc` in JavaScript to see what’s
-    chosen by the browser. Old browsers will just use
-   `<img src>` of course, so you’d use something like 
-    `image.currentSrc || image.src` to handle all cases.
-*   The `srcset` and `sizes` list is a hint to browsers, not a command. For
-    example, a device with a device-pixel-ratio of 1.5 is free to use either the 1x 
-    or 2x image, depending on what it knows about its capabilities, the network, etc.
-   
-*   `<img sizes="(max-width: 30em) 100vw …">` says: if this “media
-    query” is true, show the image with a
-   `100vw` width. The first true “media query” wins, so source order matters.
+* `<picture>` *требует* `<img>` как свой последний предок. Без этого ничего не выведется. Это хорошо для совместимости, так как есть только одно традиционное место для вашего альтернативного текста и это хорошо для поддержки содержимого в старых браузерах, которые показывают только `<img>` элемент.
+* Думайте о аттрибутах `<picture>`, `sizes` и `srcset` как о перезаписи `src` в `<img>`. Проверяйте `currentSrc` в JavaScript для того, чтобы узнать что выбирает браузер. Старые браузеры конечно же будут использовать только `<img src>`, поэтому вам нужно будет использовать что-то наподобие `image.currentSrc || image.src`, чтобы обработать все случаи.
+* В `srcset` и `sizes` список -- это подсказка для браузеров, а не команда. Например, устройство с соотношением устройство-пиксель в 1.5 будет свободно использовать 1x или 2x изображение в зависимости от того, что оно знает о своих возможностях, сети и т.д.   
+* `<img sizes="(max-width: 30em) 100vw …">` сообщает: если этот “медиазапрос” верен, показать изображение с `100vw` шириной. Первый “медиазапрос” выигрывает, поэтому порядок источников важен.
 
 ## Art direction use case {#art-direction-use-case}
 
