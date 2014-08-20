@@ -113,11 +113,9 @@ use-case
 
 Для окон браузеров с шириной 1024 CSS пикселов и шире используется полноэкранное изображение; меньшие окна браузера используют приближённые фото. В дополнение, эти фото поставляются как изображения с высоким разрешёнием для браузеров на устройствах с экранами высокого разрешения; другие браузеры получат обычное изображение.
 
-## High-DPI images & different image types use case {#high-dpi-images--
-different-image-types-use-case
-}
+## Изображения высокого разрешения и различные типы изображений{#high-dpi-images--different-image-types-use-case}
 
-sizes dpi mime art
+размеры *dpi* *mime* содержимое
 
     <picture>
     	<source
@@ -132,15 +130,11 @@ sizes dpi mime art
     </picture>
     
 
-Browsers on devices with high-DPI screens get an image with twice or even three
-times the amount of pixels; other browsers get a normal image. These photos are 
-served as WebP to browsers that support it; other browsers get JPG.
+Браузеры на устройствах с высоким разрешением получают в два или даже в три раза большее количество пикселей; другие браузеры получают обычное изображения. Эти фото выдаются в WebP формате для поддерживающих его браузеров; остальные браузеры получают JPG.
 
-## High-DPI images, different image types & art direction use case {#high-dpi-
-images-different-image-types--art-direction-use-case
-}
+## Изображения с высоким разрешением, различные типы изображений и различное содержимое{#high-dpi-images-different-image-types--art-direction-use-case}
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -166,15 +160,11 @@ sizes dpi mime art
     </picture>
     
 
-For browser windows with a width of 1024 CSS pixels and wider, a full-shot
-photo is used; smaller browser windows get a close-up photo. In addition, these 
-photos are served as high-resolution images to browsers on devices with high-DPI
-screens; other browsers get a normal image. They are also served as WebP to 
-browsers that support it; other browsers get JPG.
+Для окон браузеров с шириной в 1024 CSS пикселя и шире используется полноэкранное изображение; меньшие окна браузера получают приближённое фото. В дополнение, эти фото выдаются в высоком разрешения для браузеров на устройствах с экранами высокого разрешения; остальные браузеры получают обычное изображение. Эти фото выдаются в WebP формате для поддерживающих его браузеров; остальные браузеры получают JPG.
 
-## Changing image sizes use case {#changing-image-sizes-use-case}
+## Смена размеров изображений {#changing-image-sizes-use-case}
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <img
     	src="opera-fallback.jpg" alt="The Oslo Opera House"
@@ -195,7 +185,7 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 direction-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -227,7 +217,7 @@ keeping in mind image width and screen DPI.
 --different-image-types-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -258,7 +248,7 @@ served as WebP to browsers that support it; other browsers get JPG.
 changing-image-sizes-different-image-types--art-direction-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -306,7 +296,7 @@ browsers that support it; other browsers get JPG.
 -dpi-images-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <img
     	src="opera-fallback.jpg" alt="The Oslo Opera House"
@@ -329,7 +319,7 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 image-sizes-high-dpi-images--art-direction-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -365,7 +355,7 @@ image from a selection of images with widths of 200px, 400px, 800px, 1200px,
 changing-image-sizes-high-dpi-images--different-image-types-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
@@ -402,7 +392,7 @@ use case {#changing-image-sizes-high-dpi-images-different-image-types--art-
 direction-use-case
 }
 
-sizes dpi mime art
+размеры dpi mime содержимое
 
     <picture>
     	<source
