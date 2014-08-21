@@ -175,8 +175,7 @@ use-case
     			opera-1200.jpg 1200w">
     
 
-For browser windows with a width of 640 CSS pixels and wider, a photo with a
-width of 60% of the viewport width is used; for less wide browser windows, a 
+Для окон браузеров с шириной в 640 CSS пикселов и шире используется фото с шириной 60% области просмотра; для браузров с меньшей шириной, width of 60% of the viewport width is used; for less wide browser windows, a 
 photo with a width that is equal to the full viewport width is used. The browser
 picks the optional image from a selection of images with widths of 200px, 400px,
 800px and 1200px, keeping in mind image width and screen DPI.
