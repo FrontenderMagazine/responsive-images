@@ -164,7 +164,7 @@ use-case
 
 ## Смена размеров изображений {#changing-image-sizes-use-case}
 
-размеры dpi mime содержимое
+*размеры* dpi mime содержимое
 
     <img
     	src="opera-fallback.jpg" alt="The Oslo Opera House"
@@ -175,10 +175,7 @@ use-case
     			opera-1200.jpg 1200w">
     
 
-Для окон браузеров с шириной в 640 CSS пикселов и шире используется фото с шириной 60% области просмотра; для браузров с меньшей шириной, width of 60% of the viewport width is used; for less wide browser windows, a 
-photo with a width that is equal to the full viewport width is used. The browser
-picks the optional image from a selection of images with widths of 200px, 400px,
-800px and 1200px, keeping in mind image width and screen DPI.
+Для окон браузеров с шириной в 640 CSS пикселов и шире используется фото с шириной 60% области просмотра; для браузеров с меньшей шириной окна используется фото равное полной ширине области просмотра. Браузер оптимальное изображение из выборки изображений с шириной в 200px, 400px, 800px и 1200px, принимая во внимание ширину изображения и разрешение экрана.
 
 ## Changing image sizes & art direction use case {#changing-image-sizes--art-
 direction-use-case
