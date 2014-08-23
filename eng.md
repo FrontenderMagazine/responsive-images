@@ -59,7 +59,7 @@ Apple иметь их в своей следующей версии Safari).
 
 Браузеры, которые поддерживают WebP получают WebP изображения; остальные получают JPG.
 
-## Различные типы изображений и разное содержимое{#different-image-types--art-direction-use-case}
+## Различные типы изображений и разное содержимое{#different-image-types-art-direction-use-case}
 
 размеры dpi *mime* *содержимое*
 
@@ -113,7 +113,7 @@ use-case
 
 Для окон браузеров с шириной 1024 CSS пикселов и шире используется полноэкранное изображение; меньшие окна браузера используют приближённые фото. В дополнение, эти фото поставляются как изображения с высоким разрешёнием для браузеров на устройствах с экранами высокого разрешения; другие браузеры получат обычное изображение.
 
-## Изображения высокого разрешения и различные типы изображений{#high-dpi-images--different-image-types-use-case}
+## Изображения высокого разрешения и различные типы изображений{#high-dpi-images-different-image-types-use-case}
 
 размеры *dpi* *mime* содержимое
 
@@ -132,7 +132,7 @@ use-case
 
 Браузеры на устройствах с высоким разрешением получают в два или даже в три раза большее количество пикселей; другие браузеры получают обычное изображения. Эти фото выдаются в WebP формате для поддерживающих его браузеров; остальные браузеры получают JPG.
 
-## Изображения с высоким разрешением, различные типы изображений и различное содержимое{#high-dpi-images-different-image-types--art-direction-use-case}
+## Изображения с высоким разрешением, различные типы изображений и различное содержимое{#high-dpi-images-different-image-types-art-direction-use-case}
 
 размеры dpi mime содержимое
 
@@ -177,9 +177,7 @@ use-case
 
 Для окон браузеров с шириной в 640 CSS пикселов и шире используется фото с шириной 60% области просмотра; для браузеров с меньшей шириной окна используется фото равное полной ширине области просмотра. Браузер оптимальное изображение из выборки изображений с шириной в 200px, 400px, 800px и 1200px, принимая во внимание ширину изображения и разрешение экрана.
 
-## Changing image sizes & art direction use case {#changing-image-sizes--art-
-direction-use-case
-}
+## Changing image sizes & art direction use case {#changing-image-sizes-art-direction-use-case}
 
 размеры dpi mime содержимое
 
@@ -201,17 +199,9 @@ direction-use-case
     </picture>
     
 
-For browser windows with a width of 1280 CSS pixels and wider, a full-shot
-photo with a width of 50% of the viewport width is used; for browser windows 
-with a width of 640-1279 CSS pixels, a photo with a width of 60% of the viewport
-width is used; for less wide browser windows, a photo with a width that is equal
-to the full viewport width is used. In each case, the browser picks the optional
-image from a selection of images with widths of 200px, 400px, 800px and 1200px, 
-keeping in mind image width and screen DPI.
+Для окон браузеров с шириной в 1280 CSS пикселов и шире, используется полноэкранное изображение с шириной просмотра в 50%; для браузеров с шириной в 640-1279 CSS пикселов используется фото с 60% ширины области просмотра; для меньших окон браузера используется фото равное полной ширине области просмотра. В каждом случае браузер берёт оптимальное изображение с выборки изображений с шириной в 200px, 400px, 800px и 1200px, принимая во внимание ширину и разрешение экрана устройства.
 
-## Changing image sizes & different image types use case {#changing-image-sizes
---different-image-types-use-case
-}
+## Changing image sizes & different image types use case {#changing-image-sizes-different-image-types-use-case}
 
 размеры dpi mime содержимое
 
@@ -240,9 +230,7 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 800px and 1200px, keeping in mind image width and screen DPI. These photos are 
 served as WebP to browsers that support it; other browsers get JPG.
 
-## Changing image sizes, different image types & art direction use case {#
-changing-image-sizes-different-image-types--art-direction-use-case
-}
+## Changing image sizes, different image types & art direction use case {#changing-image-sizes-different-image-types--art-direction-use-case}
 
 размеры dpi mime содержимое
 
@@ -288,9 +276,7 @@ image from a selection of images with widths of 200px, 400px, 800px and 1200px,
 keeping in mind image width and screen DPI. These photos are served as WebP to 
 browsers that support it; other browsers get JPG.
 
-## Changing image sizes & high-DPI images use case {#changing-image-sizes--high
--dpi-images-use-case
-}
+## Changing image sizes & high-DPI images use case {#changing-image-sizes-high-dpi-images-use-case}
 
 размеры dpi mime содержимое
 
@@ -311,9 +297,7 @@ photo with a width that is equal to the full viewport width is used. The browser
 picks the optional image from a selection of images with widths of 200px, 400px,
 800px, 1200px, 1600px and 2000px, keeping in mind image width and screen DPI.
 
-## Changing image sizes, high-DPI images & art direction use case {#changing-
-image-sizes-high-dpi-images--art-direction-use-case
-}
+## Changing image sizes, high-DPI images & art direction use case {#changing-image-sizes-high-dpi-images--art-direction-use-case}
 
 размеры dpi mime содержимое
 
@@ -347,9 +331,7 @@ to the full viewport width is used. In each case, the browser picks the optional
 image from a selection of images with widths of 200px, 400px, 800px, 1200px, 
 1600px and 2000px, keeping in mind image width and screen DPI.
 
-## Changing image sizes, high-DPI images & different image types use case {#
-changing-image-sizes-high-dpi-images--different-image-types-use-case
-}
+## Changing image sizes, high-DPI images & different image types use case {#changing-image-sizes-high-dpi-images--different-image-types-use-case}
 
 размеры dpi mime содержимое
 
@@ -383,10 +365,7 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 These photos are served as WebP to browsers that support it; other browsers get 
 JPG.
 
-## Changing image sizes, high-DPI images, different image types & art direction
-use case {#changing-image-sizes-high-dpi-images-different-image-types--art-
-direction-use-case
-}
+## Changing image sizes, high-DPI images, different image types & art direction use case {#changing-image-sizes-high-dpi-images-different-image-types-art-direction-use-case}
 
 размеры dpi mime содержимое
 
