@@ -1,37 +1,69 @@
-## Вступление {#introduction}
+## Introduction {#introduction}
 
-Наконец-то по настоящему отзывчивые изображения стают реальностью веба -- в чистом HTML, без всяких замысловатых хаков. Элемент `<picture>` и парочка новых аттрибутов элемента `<img>` уже поддерживаются в Chromium 37 и идут в комплекте в Chromium 38 (скоро ожидается то же в Opera), в [Firefox Nightly][1]
-и имплементрируются в [implemented in WebKit][2] (нужно будет ещё посмотреть будет ли 
-Apple иметь их в своей следующей версии Safari).
+Finally, true responsive images are becoming a reality on the web — in pure
+HTML, without convoluted hacks. The`<picture>` element and a couple of
+new attributes for the`<img>` element are behind a flag in Chromium 37
+and shipping in Chromium 38 (so coming soon in Opera), in[Firefox Nightly][1]
+and are being[implemented in WebKit][2] (although it remains to be seen if
+Apple will ship it in the next version of Safari
+).
 
-Новый элемент `<picture>` может быть длинным и запутанным потому что он решает множество случаев использования. Для того, чтобы помочь удовлетворить ваши нужды в синтаксисе отзывчивых изображений, мы подготовили эту полную примеров статью.
+The new `<picture>` element can be verbose and confusing, because it
+solves a range of use cases. To help you match your requirements to the 
+responsive image syntax, we’ve prepared this article full of examples.
 
-## Четыре вопроса {#four-questions}
+## Four questions {#four-questions}
 
-Прежде чем вы начали использовать отзывчивые изображения в вашей разработке, вам нужно ответить на следующие четыре вопроса:
+Before you start using responsive images in your design, you always have to
+answer the following four questions:
 
-* Хочу ли я чтобы **размеры** моих изображений изменялись в зависимости от правил моего отзывчивого дизайна?   
-* Хочу ли я оптимизироваться под экраны с высоким **dpi**?
-* Хочу ли я отдавать изображения з различными **mime** типами для поддерживающих их браузеров?   
-* Хочу ли я отдавать различное **содержимое** в зависимости от определённых контекстовых факторов?
+*   Do I want my image **sizes** to change depending on my responsive design
+    rules?
+   
+*   Do I want to optimize for high-**dpi** screens?
+*   Do I want to serve images with different **mime** types to browsers that
+    support them?
+   
+*   Do I want to serve different **art** depending on certain contextual
+    factors?
    
 
-В приведенных ниже примерах мы от the examples below, мы осветим эти вопросы используя ключевые слова **размер**, **dpi**, **mime** and **содержимое** соответственно и далее для каждой комбинации ответов мы покажем кусок примерного кода с коротким описанием. При создании этих примеров, я держал в голове
-[этот ночной снимок оперного зала Осло][3] —- он может оказаться полезным для вас.<figure class="figure">
+In the examples below, we’re referring to these questions with the keywords **
+sizes**, **dpi**, **mime** and **art**, respectively, and then for each
+combination of answers, we show a snippet of example code with a short 
+explanation. When creating these examples, I had
+[this night shot of the Oslo Opera house][3] in my head — it might be useful
+for your reference.<figure class="figure">
 
-![Ночной снимок оперного зала Осло][4]<figcaption class="figure__caption">Ночной снимок оперного зала Осло</figcaption></figure>
-## Вещи, которые нужно запомнить {#things-to-keep-in-mind}
+![The Opera House in Oslo at night][4]<figcaption class="figure__caption">The
+Opera House in Oslo at night</figcaption></figure>
+## Things to keep in mind {#things-to-keep-in-mind}
 
-Перед тем, как вы взглянете на различные примеры ниже, нужно запомнить несколько следующих вещей:
+Before you start looking at the different examples though, here are a couple of
+things to keep in mind:
 
-* `<picture>` *требует* `<img>` как свой последний предок. Без этого ничего не выведется. Это хорошо для совместимости, так как есть только одно традиционное место для вашего альтернативного текста и это хорошо для поддержки содержимого в старых браузерах, которые показывают только `<img>` элемент.
-* Думайте о аттрибутах `<picture>`, `sizes` и `srcset` как о перезаписи `src` в `<img>`. Проверяйте `currentSrc` в JavaScript для того, чтобы узнать что выбирает браузер. Старые браузеры конечно же будут использовать только `<img src>`, поэтому вам нужно будет использовать что-то наподобие `image.currentSrc || image.src`, чтобы обработать все случаи.
-* В `srcset` и `sizes` список -- это подсказка для браузеров, а не команда. Например, устройство с соотношением устройство-пиксель в 1.5 будет свободно использовать 1x или 2x изображение в зависимости от того, что оно знает о своих возможностях, сети и т.д.   
-* `<img sizes="(max-width: 30em) 100vw …">` сообщает: если этот “медиазапрос” верен, показать изображение с `100vw` шириной. Первый “медиазапрос” выигрывает, поэтому порядок источников важен.
+*   `<picture>` *requires* `<img>` as its last child. Without that
+    , nothing is displayed. This is good for accessibility as there is just one 
+    traditional place for your alternate text, and it’s great for fallback content 
+    in old browsers, which just show the
+   `<img>` element.
+*   Think of `<picture>`, `sizes` and `srcset` attributes as overriding
+    the
+   `src` of the `<img>`. Check `currentSrc` in JavaScript to see what’s
+    chosen by the browser. Old browsers will just use
+   `<img src>` of course, so you’d use something like 
+    `image.currentSrc || image.src` to handle all cases.
+*   The `srcset` and `sizes` list is a hint to browsers, not a command. For
+    example, a device with a device-pixel-ratio of 1.5 is free to use either the 1x 
+    or 2x image, depending on what it knows about its capabilities, the network, etc.
+   
+*   `<img sizes="(max-width: 30em) 100vw …">` says: if this “media
+    query” is true, show the image with a
+   `100vw` width. The first true “media query” wins, so source order matters.
 
-## Выдача разного содержимого {#art-direction-use-case}
+## Art direction use case {#art-direction-use-case}
 
-размеры dpi mime *содержимое*
+sizes dpi mime art
 
     <picture>
     	<source
@@ -42,11 +74,12 @@ Apple иметь их в своей следующей версии Safari).
     </picture>
     
 
-Для браузеров с шириной окна в 1024 CSS пиксела и шире, используется полноэкранное фото, меньшие окна браузера получат приближённое фото.
+For browser windows with a width of 1024 CSS pixels and wider, a full-shot
+photo is used; smaller browser windows get a close-up photo.
 
-## Использование различных типов изображений{#different-image-types-use-case}
+## Different image types use case {#different-image-types-use-case}
 
-размеры dpi *mime* содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -57,11 +90,13 @@ Apple иметь их в своей следующей версии Safari).
     </picture>
     
 
-Браузеры, которые поддерживают WebP получают WebP изображения; остальные получают JPG.
+Browsers that support WebP get a WebP image; other browsers get JPG.
 
-## Различные типы изображений и разное содержимое{#different-image-types-art-direction-use-case}
+## Different image types & art direction use case {#different-image-types--art-
+direction-use-case
+}
 
-размеры dpi *mime* *содержимое*
+sizes dpi mime art
 
     <picture>
     	<source
@@ -79,24 +114,27 @@ Apple иметь их в своей следующей версии Safari).
     </picture>
     
 
-Для окон браузеров с шириной в 1024 CSS пиксела и шире, будет использоваться полноэкранное фото; меньшие окна браузера получат приближённое фото. Это фото будет выдаваться в WebP формате для браузеров, которые его поддерживают; другие будут получать в формате JPG.
+For browser windows with a width of 1024 CSS pixels and wider, a full-shot
+photo is used; smaller browser windows get a close-up photo. This photo is 
+served as WebP to browsers that support it; other browsers get JPG.
 
-## Изображения с высоким разрешением{#high-dpi-images-use-case}
+## High-DPI images use case {#high-dpi-images-use-case}
 
-размеры *dpi* mime содержимое
+sizes dpi mime art
 
     <img
     	src="opera-1x.jpg" alt="The Oslo Opera House"
     	srcset="opera-2x.jpg 2x, opera-3x.jpg 3x">
     
 
-Браузеры на устройствах с высоким разрешением получают изображения высокого разрешения; другие браузеры получают обычное изображение.
+Browsers on devices with high-DPI screens get a high resolution image; other
+browsers get a normal image.
 
-## Изображения с высоким разрешением и разным содержимым{#high-dpi-images--art-direction-
+## High-DPI images & art direction use case {#high-dpi-images--art-direction-
 use-case
 }
 
-размеры *dpi* mime *содержимое*
+sizes dpi mime art
 
     <picture>
     	<source
@@ -111,11 +149,16 @@ use-case
     </picture>
     
 
-Для окон браузеров с шириной 1024 CSS пикселов и шире используется полноэкранное изображение; меньшие окна браузера используют приближённые фото. В дополнение, эти фото поставляются как изображения с высоким разрешёнием для браузеров на устройствах с экранами высокого разрешения; другие браузеры получат обычное изображение.
+For browser windows with a width of 1024 CSS pixels and wider, a full-shot
+photo is used; smaller browser windows get a close-up photo. In addition, these 
+photos are served as high-resolution images to browsers on devices with high-DPI
+screens; other browsers get a normal image.
 
-## Изображения высокого разрешения и различные типы изображений{#high-dpi-images-different-image-types-use-case}
+## High-DPI images & different image types use case {#high-dpi-images--
+different-image-types-use-case
+}
 
-размеры *dpi* *mime* содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -130,11 +173,15 @@ use-case
     </picture>
     
 
-Браузеры на устройствах с высоким разрешением получают в два или даже в три раза большее количество пикселей; другие браузеры получают обычное изображения. Эти фото выдаются в WebP формате для поддерживающих его браузеров; остальные браузеры получают JPG.
+Browsers on devices with high-DPI screens get an image with twice or even three
+times the amount of pixels; other browsers get a normal image. These photos are 
+served as WebP to browsers that support it; other browsers get JPG.
 
-## Изображения с высоким разрешением, различные типы изображений и различное содержимое{#high-dpi-images-different-image-types-art-direction-use-case}
+## High-DPI images, different image types & art direction use case {#high-dpi-
+images-different-image-types--art-direction-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -160,11 +207,15 @@ use-case
     </picture>
     
 
-Для окон браузеров с шириной в 1024 CSS пикселя и шире используется полноэкранное изображение; меньшие окна браузера получают приближённое фото. В дополнение, эти фото выдаются в высоком разрешения для браузеров на устройствах с экранами высокого разрешения; остальные браузеры получают обычное изображение. Эти фото выдаются в WebP формате для поддерживающих его браузеров; остальные браузеры получают JPG.
+For browser windows with a width of 1024 CSS pixels and wider, a full-shot
+photo is used; smaller browser windows get a close-up photo. In addition, these 
+photos are served as high-resolution images to browsers on devices with high-DPI
+screens; other browsers get a normal image. They are also served as WebP to 
+browsers that support it; other browsers get JPG.
 
-## Смена размеров изображений {#changing-image-sizes-use-case}
+## Changing image sizes use case {#changing-image-sizes-use-case}
 
-*размеры* dpi mime содержимое
+sizes dpi mime art
 
     <img
     	src="opera-fallback.jpg" alt="The Oslo Opera House"
@@ -175,11 +226,17 @@ use-case
     			opera-1200.jpg 1200w">
     
 
-Для окон браузеров с шириной в 640 CSS пикселов и шире используется фото с шириной 60% области просмотра; для браузеров с меньшей шириной окна используется фото равное полной ширине области просмотра. Браузер оптимальное изображение из выборки изображений с шириной в 200px, 400px, 800px и 1200px, принимая во внимание ширину изображения и разрешение экрана.
+For browser windows with a width of 640 CSS pixels and wider, a photo with a
+width of 60% of the viewport width is used; for less wide browser windows, a 
+photo with a width that is equal to the full viewport width is used. The browser
+picks the optional image from a selection of images with widths of 200px, 400px,
+800px and 1200px, keeping in mind image width and screen DPI.
 
-## Changing image sizes & art direction use case {#changing-image-sizes-art-direction-use-case}
+## Changing image sizes & art direction use case {#changing-image-sizes--art-
+direction-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -199,11 +256,19 @@ use-case
     </picture>
     
 
-Для окон браузеров с шириной в 1280 CSS пикселов и шире, используется полноэкранное изображение с шириной просмотра в 50%; для браузеров с шириной в 640-1279 CSS пикселов используется фото с 60% ширины области просмотра; для меньших окон браузера используется фото равное полной ширине области просмотра. В каждом случае браузер берёт оптимальное изображение с выборки изображений с шириной в 200px, 400px, 800px и 1200px, принимая во внимание ширину и разрешение экрана устройства.
+For browser windows with a width of 1280 CSS pixels and wider, a full-shot
+photo with a width of 50% of the viewport width is used; for browser windows 
+with a width of 640-1279 CSS pixels, a photo with a width of 60% of the viewport
+width is used; for less wide browser windows, a photo with a width that is equal
+to the full viewport width is used. In each case, the browser picks the optional
+image from a selection of images with widths of 200px, 400px, 800px and 1200px, 
+keeping in mind image width and screen DPI.
 
-## Changing image sizes & different image types use case {#changing-image-sizes-different-image-types-use-case}
+## Changing image sizes & different image types use case {#changing-image-sizes
+--different-image-types-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -230,9 +295,11 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 800px and 1200px, keeping in mind image width and screen DPI. These photos are 
 served as WebP to browsers that support it; other browsers get JPG.
 
-## Changing image sizes, different image types & art direction use case {#changing-image-sizes-different-image-types--art-direction-use-case}
+## Changing image sizes, different image types & art direction use case {#
+changing-image-sizes-different-image-types--art-direction-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -276,9 +343,11 @@ image from a selection of images with widths of 200px, 400px, 800px and 1200px,
 keeping in mind image width and screen DPI. These photos are served as WebP to 
 browsers that support it; other browsers get JPG.
 
-## Changing image sizes & high-DPI images use case {#changing-image-sizes-high-dpi-images-use-case}
+## Changing image sizes & high-DPI images use case {#changing-image-sizes--high
+-dpi-images-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <img
     	src="opera-fallback.jpg" alt="The Oslo Opera House"
@@ -297,9 +366,11 @@ photo with a width that is equal to the full viewport width is used. The browser
 picks the optional image from a selection of images with widths of 200px, 400px,
 800px, 1200px, 1600px and 2000px, keeping in mind image width and screen DPI.
 
-## Changing image sizes, high-DPI images & art direction use case {#changing-image-sizes-high-dpi-images--art-direction-use-case}
+## Changing image sizes, high-DPI images & art direction use case {#changing-
+image-sizes-high-dpi-images--art-direction-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -331,9 +402,11 @@ to the full viewport width is used. In each case, the browser picks the optional
 image from a selection of images with widths of 200px, 400px, 800px, 1200px, 
 1600px and 2000px, keeping in mind image width and screen DPI.
 
-## Changing image sizes, high-DPI images & different image types use case {#changing-image-sizes-high-dpi-images--different-image-types-use-case}
+## Changing image sizes, high-DPI images & different image types use case {#
+changing-image-sizes-high-dpi-images--different-image-types-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
@@ -365,9 +438,12 @@ picks the optional image from a selection of images with widths of 200px, 400px,
 These photos are served as WebP to browsers that support it; other browsers get 
 JPG.
 
-## Changing image sizes, high-DPI images, different image types & art direction use case {#changing-image-sizes-high-dpi-images-different-image-types-art-direction-use-case}
+## Changing image sizes, high-DPI images, different image types & art direction
+use case {#changing-image-sizes-high-dpi-images-different-image-types--art-
+direction-use-case
+}
 
-размеры dpi mime содержимое
+sizes dpi mime art
 
     <picture>
     	<source
